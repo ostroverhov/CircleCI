@@ -13,8 +13,8 @@ public class WebTest {
 
     @BeforeEach
     public void setUpBrowser() {
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
         driver.get("https://web.automation.easyhire.me");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
