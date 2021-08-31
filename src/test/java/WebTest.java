@@ -1,11 +1,12 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class WebTest {
@@ -32,6 +33,12 @@ public class WebTest {
 
     @AfterEach
     public void tearDown() {
+        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(file, new File("target/screen.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         driver.quit();
     }
 }
