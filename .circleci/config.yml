@@ -1,12 +1,12 @@
 version: 2.1
-orbs:
-  browser-tools: circleci/browser-tools@1.2.1
+#orbs:
+#  browser-tools: circleci/browser-tools@1.2.1
 jobs:
   ui-tests:
     docker:
       - image: cimg/openjdk:16.0.1-browsers
     steps:
-      - browser-tools/install-browser-tools
+#      - browser-tools/install-browser-tools
       - checkout
       - restore_cache:
           keys:
@@ -17,9 +17,6 @@ jobs:
           paths:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
-      - run:
-          name: Check browser version
-          command: google-chrome --version
       - run:
           name: Running tests
           command: mvn clean test

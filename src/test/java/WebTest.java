@@ -19,10 +19,12 @@ public class WebTest {
         driver.get("https://web.automation.easyhire.me");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        System.out.println("finish set up");
     }
 
     @Test
     public void successfulLogin() {
+        System.out.println("start test");
         WebElement loginButton = driver.findElement(By.xpath("//span[contains(text(), 'Log in') and @class='MuiButton-label']"));
         loginButton.click();
         Assertions.assertTrue(driver.findElement(By.cssSelector("header.MuiPaper-root")).isDisplayed(), "check login form");
