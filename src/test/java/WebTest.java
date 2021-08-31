@@ -1,4 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
@@ -33,12 +34,12 @@ public class WebTest {
 
     @AfterEach
     public void tearDown() {
-        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        try {
-            FileUtils.copyFile(file, new File("target/site/screen.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        screenshot();
         driver.quit();
+    }
+
+    @Attachment(value = "Screenshot", type = "image/png")
+    public byte[] screenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }
