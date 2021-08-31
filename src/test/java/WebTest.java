@@ -2,6 +2,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -22,7 +23,8 @@ public class WebTest {
 
     @Test
     public void successfulLogin() {
-        driver.findElement(By.xpath("//span[contains(text(), 'Log in') and @class='MuiButton-label']")).click();
+        WebElement loginButton = driver.findElement(By.xpath("//span[contains(text(), 'Log in') and @class='MuiButton-label']"));
+        loginButton.click();
         Assertions.assertTrue(driver.findElement(By.cssSelector("header.MuiPaper-root")).isDisplayed(), "check login form");
     }
 
