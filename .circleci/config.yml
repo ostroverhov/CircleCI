@@ -1,12 +1,12 @@
 version: 2.1
-#orbs:
-#  browser-tools: circleci/browser-tools@1.2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.2.1
 jobs:
   ui-tests:
     docker:
       - image: cimg/openjdk:16.0.1-browsers
     steps:
-#      - browser-tools/install-browser-tools
+      - browser-tools/install-browser-tools
       - checkout
       - restore_cache:
           keys:
@@ -18,8 +18,8 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "pom.xml" }}
       - run:
-          name: Download libnss
-          command: sudo apt install libgconf-2-4 libatk1.0-0 libatk-bridge2.0-0 libgdk-pixbuf2.0-0 libgtk-3-0 libgbm-dev libnss3-dev libxss-dev
+          name: Check browser version
+          command: google-chrome --version
       - run:
           name: Running tests
           command: mvn clean test
