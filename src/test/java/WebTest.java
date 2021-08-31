@@ -35,7 +35,7 @@ public class WebTest {
     public void tearDown() {
         File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(file, new File("target/screen.png"));
+            FileUtils.copyFile(file, new File("target/site/screen.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
