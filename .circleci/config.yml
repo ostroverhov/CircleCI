@@ -25,7 +25,7 @@ jobs:
           command: mvn allure:report
           when: always
       - store_test_results:
-          path: target/surefire-reports/junitreports
+          path: target/surefire-reports
       - store_artifacts:
           path: target/site/allure-maven-plugin/
 workflows:
